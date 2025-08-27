@@ -1,36 +1,19 @@
-import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import dotenv from "dotenv";
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
-import authRoutes from "./routes/auth.js";
-import adminRoutes from "./routes/admin.js";
-import customerRoutes from "./routes/customer.js";
-import agentRoutes from "./routes/agent.js";
-import parcelRoutes from "./routes/parcel.js";
-
-dotenv.config();
 const app = express();
-
+const api = require("./routes/api");
 app.use(cors());
 app.use(express.json());
 
-// Connect MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
-// Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/customer", customerRoutes);
-app.use("/api/agent", agentRoutes);
-app.use("/api/parcel", parcelRoutes);
-
-// Test
-app.get("/", (req, res) => {
-  res.send("Courier System API running...");
-});
+app.use("/api/", api);
 
 // Start server
 const PORT = process.env.PORT || 5000;
