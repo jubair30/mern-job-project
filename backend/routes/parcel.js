@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Parcel = require("../models/Parcel"); // adjust path if needed
-
+const Parcel = require("../models/Parcel"); 
 router.post("/", async (req, res) => {
   try {
     const newParcel = new Parcel(req.body);
@@ -14,7 +13,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const parcels = await Parcel.find().populate("customerId", "name email"); // populate customer info
+    const parcels = await Parcel.find().populate("customerId", "name email"); 
     res.status(200).json(parcels);
   } catch (err) {
     res.status(500).json({ message: err.message });

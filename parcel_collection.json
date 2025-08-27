@@ -1,0 +1,113 @@
+{
+  "info": {
+    "name": "Parcel CRUD API",
+    "_postman_id": "1234-5678-91011-1213",
+    "description": "Postman collection for testing Parcel CRUD API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Parcel",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customerId\": \"<customer_id_here>\",\n  \"trackingNumber\": \"TN123456\",\n  \"status\": \"Pending\",\n  \"weight\": 2.5,\n  \"destination\": \"Dhaka, Bangladesh\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/parcels",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "parcels"]
+        }
+      }
+    },
+    {
+      "name": "Get All Parcels",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:5000/api/parcels",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "parcels"]
+        }
+      }
+    },
+    {
+      "name": "Get Parcel By ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:5000/api/parcels/{{parcelId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "parcels", "{{parcelId}}"]
+        }
+      },
+      "variable": [
+        {
+          "key": "parcelId",
+          "value": "replace_with_parcel_id"
+        }
+      ]
+    },
+    {
+      "name": "Update Parcel",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Delivered\",\n  \"destination\": \"Chittagong, Bangladesh\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/parcels/{{parcelId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "parcels", "{{parcelId}}"]
+        }
+      },
+      "variable": [
+        {
+          "key": "parcelId",
+          "value": "replace_with_parcel_id"
+        }
+      ]
+    },
+    {
+      "name": "Delete Parcel",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:5000/api/parcels/{{parcelId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "parcels", "{{parcelId}}"]
+        }
+      },
+      "variable": [
+        {
+          "key": "parcelId",
+          "value": "replace_with_parcel_id"
+        }
+      ]
+    }
+  ]
+}
